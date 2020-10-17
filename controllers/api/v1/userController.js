@@ -70,27 +70,7 @@ module.exports.login = async function (req, res) {
     });
   }
 };
-//jab login ho jaye tab password change krne hai
-//ruko mail dikhata hu
 
-// module.exports.forgotPassword=function(req,res){
-//     const {email}=req.body;
-//     User.findOne({email},(err,user)=>{
-//         if(!err || !user){
-//             return res.status(400).json({error:"User with this email does not exists."});
-//         }
-//         const token=jwt.sign({_id:user._id},{expiresIn:"1000000000"});
-
-//         return user.updateOne({resetLink:token}, function(err,success){
-//             if(err){
-//                 return res.status(400).json({error:"reset password link error"});
-//             }
-//             else{
-
-//              }
-//         })
-//     })
-// }
 
 module.exports.resetPassword = async function (req, res) {
   try {
@@ -108,13 +88,18 @@ module.exports.resetPassword = async function (req, res) {
     console.log(err);
   }
 };
-//done but bro password change postman me krne hai 
 
-//ha bro ho gaya bro ek question the ..k 
-//jab hum login krte hai tab hume profile show krne hai
-//to jo login hai wahi per route ke sath kuh krne parega
-//tum bs muh se bta do
-//hm aapka que samjhe nh acha ruko me mail dikhate hu
-// Get profile API which must have authentication validation at the backend level
-//ek profile ka route bna lijiyega./...usko authenticate kijiyega...fir controller me req.user._id se find krke user ko return kr dijiyega,,,
-//okay bro thank you bro..wclcm itne koi nahi krte thank you..koi nh..best of liuck okay bye bro
+module.exports.getProfileApi=async function(req,res){
+    try{
+     const user=await User.findById(req.user._id);
+
+     if(user){
+        return res.json({
+            status:`user profile`
+        }) 
+     }
+
+    }catch(err){
+       console.log(err);
+    }
+}

@@ -12,4 +12,7 @@ router.patch(
   userApi.resetPassword
 );
 
+router.get("/profile",passport.authenticate("jwt",{session:false}),userApi.getProfileApi);
+
+
 module.exports = router;

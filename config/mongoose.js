@@ -1,14 +1,13 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost/HospitalApi');
+mongoose.connect("mongodb://localhost/newdb");
 
-const db=mongoose.connection;
+const db = mongoose.connection;
 
-db.on('error',console.error.bind(console,'error'));
+db.on("error", console.error.bind(console, "error"));
 
-db.once('open',function(){
-    console.log('Successfully connected to database');
-})
+db.once("open", function () {
+  console.log("Successfully connected to database");
+});
 
-
-module.exports=db;
+module.exports = db;
